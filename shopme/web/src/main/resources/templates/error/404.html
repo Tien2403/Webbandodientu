@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('Page Not Found - Buynow', 'none')" />
+</head>
+<body>
+<div >
+	<div th:replace="navigation :: header_menu"></div>
+	
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+	
+			<div class="m-3">
+				<h2>Sorry, the requested page could not be found</h2>		
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="navigation :: footer_menu"></div>
+	
+</div>
+</body>
+</html>

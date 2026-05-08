@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content" class="col-lg-3 col-md-4 col-sm-6 pb-1">
+	<div class="product-item bg-light mb-4">
+		<a th:href="@{${product.URI}}">
+	    <div class="product-img position-relative overflow-hidden" style="background: white;height: 220px;">
+	       <img class="img-fluid w-100" th:src="@{${product.mainImagePath}}" >
+	   </div>
+	   <div style="height: 180px; background: white" class="text-center py-4">
+	       <b style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;">[[${product.shortName}]]</b>
+	        <div class="d-flex align-items-center justify-content-center mt-2">
+	            <div th:replace="product/product_fragment :: product_price"></div>
+	        </div>
+	        <div class="d-flex align-items-center justify-content-center mb-1">
+	        <input type="text" class="product-detail-rating-star" dir="ltr" data-size="xs" th:value="${product.averageRating}"/>
+	            <small>[[${product.reviewCount}]]</small>
+	        </div>
+	    </div>
+	    </a>
+	</div>
+    
+</div>
+
+<div th:fragment="product_price" th:remove="tag">
+	<th:block th:if="${product.discountPercent &lt;= 0}">
+		<div th:replace="product/product_fragment :: price_fragment(${product.price})"></div>
+	</th:block>
+	<th:block th:if="${product.discountPercent > 0}">
+		<span style="font-size: larger; color: darkred"><div th:replace="product/product_fragment :: price_fragment(${product.discountPrice})"></div></span>
+		<del><span><div th:replace="product/product_fragment :: price_fragment(${product.price})"></div></span></del>
+	</th:block>
+</div>
+
+<div th:fragment="price_fragment(productPrice)" th:remove="tag">
+<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>[[${#numbers.formatDecimal(productPrice, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]<span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+</div>
+
+</body>
+</html>

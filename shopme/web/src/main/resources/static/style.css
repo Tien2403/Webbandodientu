@@ -1,0 +1,39 @@
+*.icon-white {color: white}
+*.icon-silver {color: silver}
+*.icon-green {color: green}
+*.icon-dark {color: gray}
+:root {
+  --main-bg-color: #D10024;
+}
+
+.page-link {
+	color: var(--main-bg-color);
+}
+
+.page-link:hover {
+	color: var(--main-bg-color);
+}
+
+.page-item.active .page-link {
+	background-color: var(--main-bg-color);
+	border-color: var(--main-bg-color);
+}
+
+@media screen and (max-width: 768px) {
+	/* small screen */
+	div.full-details { display: none }
+	div.less-details { display: block; }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	/* medium screen */
+	div.full-details { display: block; }
+	div.less-details { display: none; }
+	.hideable-column { display: none }
+}
+
+@media screen and (min-width: 1024px) {
+	/* small screen */
+	div.less-details { display: none; }
+	.hideable-column { display: table-cell; }
+}

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="col-sm-2" th:fragment="menu">
+	<form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
+		<input type="submit" />
+	</form>
+	
+	
+<!-- 	<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+		<a class="navbar-brand" th:href="@{/}">
+			<img th:src="@{/images/ShopmeAdminSmall.png}" />
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="topNavbar">
+			<ul class="navbar-nav">
+				
+				<th:block sec:authorize="hasAuthority('Admin')">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+						th:href="@{/users}">Users</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/users/new}">Create New</a>
+						<a class="dropdown-item" th:href="@{/users}">View All</a>
+					</div>
+				</li>						
+				</th:block>
+				
+				<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+						th:href="@{/categories}">Categories</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/categories/new}">Create New</a>
+						<a class="dropdown-item" th:href="@{/categories}">View All</a>
+					</div>						
+				</li>		
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+						 th:href="@{/brands}">Brands</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/brands/new}">Create New</a>
+						<a class="dropdown-item" th:href="@{/brands}">View All</a>
+					</div>						 
+				</li>
+				</th:block>
+				
+				<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson', 'Editor', 'Shipper')">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+						th:href="@{/products}">Products</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/products/new}" 
+							sec:authorize="hasAnyAuthority('Admin', 'Editor')">Create New</a>
+						<a class="dropdown-item" th:href="@{/products}">View All</a>
+						
+						<a class="dropdown-item" sec:authorize="hasAuthority('Admin')"
+							th:href="@{/reviews}">Reviews</a>
+					</div>
+				</li>
+				</th:block>
+
+				<th:block sec:authorize="hasAuthority('Assistant')">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/reviews}">Reviews</a>
+				</li>
+				</th:block>
+								
+				<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson')">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/customers}">Customers</a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/shipping_rates}">Shipping Rates</a>
+				</li>
+				</th:block>
+				
+				<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson', 'Shipper')">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/orders}">Orders</a>
+				</li>
+				</th:block>
+				
+				<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson')">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/reports}">Sales Report</a>
+				</li>	
+				</th:block>
+				
+				<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/articles}">Articles</a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/menus}">Menus</a>
+				</li>
+				</th:block>
+				
+				<li class="nav-item dropdown" sec:authorize="hasAuthority('Admin')">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" 
+						th:href="@{/settings}">Settings</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/settings#general}">General</a>
+						<a class="dropdown-item" th:href="@{/settings#countries}">Countries</a>
+						<a class="dropdown-item" th:href="@{/settings#states}">States</a>
+						<a class="dropdown-item" th:href="@{/settings#mailServer}">Mail Server</a>
+						<a class="dropdown-item" th:href="@{/settings#mailTemplate}">Mail Templates</a>
+						<a class="dropdown-item" th:href="@{/settings#payment}">Payment</a>
+					</div>
+				</li>		
+				<li>
+					<span class="fas fa-user fa-2x icon-silver"></span>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+						th:href="@{/account}" 
+						sec:authentication="principal.fullname"></a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" id="logoutLink" href="">Logout</a>
+					</div>
+				</li>										
+			</ul>
+		</div>
+		
+	</nav>  -->
+
+	<!-- --------------------------->
+	
+	<aside class="main-sidebar sidebar-dark-primary elevation-4 col" style="min-height: 100vh; height: 100%; ">
+    <!-- Brand Logo -->
+    <div class="brand-link ">     
+      <a class="navbar-brand" th:href="@{/}">
+			<img th:src="@{/images/ShopmeAdminSmall.png}" />
+		</a>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" >
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">      
+        <div class="image">          		  
+          <img th:src="@{/user-photos/user-default.png}" class="img-circle elevation-2" alt="User Image"/>   
+        </div>
+        <div class="info">
+	        <a class="d-block" th:href="@{/account}" 
+		sec:authentication="principal.fullname"></a>	
+			<span class="text-danger" sec:authentication="principal.authorities"></span>
+        </div>
+      </div>   
+
+      <!-- Sidebar Menu -->
+      
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+			<th:block sec:authorize="hasAuthority('Admin')">
+				<li id="users" class="nav-item">
+					<a th:href="@{/users}" class="nav-link">
+						<i class="nav-icon fas fa-user"></i>
+					    <p>
+					   	Users          
+					    </p>
+				  	</a>
+				</li>
+			</th:block>    
+          
+          
+			<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">								
+				<li id="categories" class="nav-item">
+					<a th:href="@{/categories}" class="nav-link">
+						<i class="nav-icon fas fa-copyright"></i>
+					    <p>
+					   	Categories          
+					    </p>
+				  	</a>
+				</li>
+				
+				<li id="brands" class="nav-item">
+					<a th:href="@{/brands}" class="nav-link">
+						<i class="nav-icon fas fa-bold"></i>
+					    <p>
+					   	Brands          
+					    </p>
+				  	</a>
+				</li>
+			</th:block>													
+          
+          
+          	<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson', 'Editor', 'Shipper')">								
+				<li id="products" class="nav-item">
+					<a th:href="@{/products}" class="nav-link">
+						<i class="nav-icon fab fa-product-hunt"></i>
+					    <p>
+					   	Products          
+					    </p>
+				  	</a>
+				</li>								
+			</th:block>
+			
+			
+			<th:block sec:authorize="hasAuthority('Assistant')">
+				<li id="reviews" class="nav-item">										
+					<a th:href="@{/reviews}" class="nav-link">
+						<i class="nav-icon fas fa-comment-dots"></i>
+					    <p>
+					   	Reviews          
+					    </p>
+				  	</a>
+				</li>
+			</th:block>
+			
+			
+			<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson')">
+				<li id="customers" class="nav-item">										
+					<a th:href="@{/customers}" class="nav-link">
+						<i class="nav-icon fas fa-users"></i>
+					    <p>
+					   	Customers          
+					    </p>
+				  	</a>
+				</li>
+				
+				<li id="shipping-rates" class="nav-item">										
+					<a th:href="@{/shipping_rates}" class="nav-link">
+						<i class="nav-icon fas fa-shipping-fast"></i>
+					    <p>
+					   	Shipping Rates          
+					    </p>
+				  	</a>
+				</li>							
+			</th:block>
+				
+			<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson', 'Shipper')">
+				<li id="orders" class="nav-item">										
+					<a th:href="@{/orders}" class="nav-link">
+						<i class="nav-icon fas fa-shopping-cart"></i>
+					    <p>
+					   	Orders         
+					    </p>
+				  	</a>
+				</li>							
+			</th:block>
+			
+			<th:block sec:authorize="hasAnyAuthority('Admin', 'Salesperson')">
+				<li id="reports" class="nav-item">										
+					<a th:href="@{/reports}" class="nav-link">
+						<i class="nav-icon far fa-chart-bar"></i>
+					    <p>
+					   	Sales Report         
+					    </p>
+				  	</a>
+				</li>								
+			</th:block>
+			
+			<th:block sec:authorize="hasAnyAuthority('Admin', 'Assistant')">
+				<li id="articles" class="nav-item">										
+					<a th:href="@{/reviews}" class="nav-link">
+						<i class="nav-icon fas fa-comments"></i>
+					    <p>
+					   	Reviews         
+					    </p>
+				  	</a>
+				</li>
+				
+		<!--	<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+				<li id="articles" class="nav-item">										
+					<a th:href="@{/articles}" class="nav-link">
+						<i class="nav-icon fas fa-book"></i>
+					    <p>
+					   	Articles         
+					    </p>
+				  	</a>
+				</li>	
+				
+				<li id="menus" class="nav-item">										
+					<a th:href="@{/menus}" class="nav-link">
+						<i class="nav-icon fas fa-bars"></i>
+					    <p>
+					   	Menus         
+					    </p>
+				  	</a>
+				</li>					
+			</th:block> -->
+	
+			<th:block sec:authorize="hasAnyAuthority('Admin')">
+				<li id="settings" class="nav-item">										
+					<a th:href="@{/settings}" class="nav-link">
+						<i class="nav-icon fas fa-cog"></i>
+					    <p>
+					   	Settings         
+					    </p>
+				  	</a>
+				</li>								
+			</th:block>						
+          
+          <li class="nav-item">
+          	<a class="nav-link" id="logoutLink" href="">
+          		<i class="nav-icon fas fa-sign-out-alt"></i>
+	            <p>
+					Đăng xuất              
+	            </p>
+          	</a>
+          	        
+          </li>   
+                                                   
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+	
+</div>
+
+</body>
+</html>

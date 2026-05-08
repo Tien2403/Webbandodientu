@@ -1,0 +1,19 @@
+
+services:
+  mysql:
+    build: ./db
+    container_name: shopme-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_USER: shopme_user
+      MYSQL_PASSWORD: P@ssWord123
+    ports:
+      - "3307:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - shopme-network
+
+networks:
+  shopme-network:
+    driver: bridge 

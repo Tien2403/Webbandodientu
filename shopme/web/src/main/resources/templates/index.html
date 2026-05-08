@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('Buynow', 'none')" />
+
+<body>
+	<div>
+	<div th:replace="navigation :: header_menu"></div>
+	<th:block sec:authorize="isAuthenticated()">
+		<div th:replace="navigation :: menu_customer"></div>
+	</th:block>
+	
+	<!-- HOT DEAL SECTION -->
+	<div id="hot-deal" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hot-deal">
+						<div id="time" >
+							<ul class="hot-deal-countdown">
+								<li>
+									<div>
+										<h3>02</h3>
+										<span>Days</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>00</h3>
+										<span>Hours</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>00</h3>
+										<span>Minutes</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>00</h3>
+										<span>Seconds</span>
+									</div>
+								</li>
+							</ul>
+						</div>											
+						<h2 class="text-uppercase">hot deal this week</h2>
+						<p>New Collection Up to 50% OFF</p>
+						<a class="primary-btn cta-btn" href="#categories">Shop now</a>
+					</div>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /HOT DEAL SECTION -->
+	
+	
+	<!-- SECTION CATEGORIES-->
+	<div id="categories" class="section">
+		<!-- container -->
+		<div class="container">
+			<div class="section-title">
+				<h3 class="title">Categories</h3>
+			</div>
+			
+			<div class="row px-xl-5 pb-3">
+				<div class="col-lg-3 col-md-4 col-sm-6 pb-1" th:each="cat : ${listCategories}">
+					<a class="text-decoration-none" th:href="@{'/c/' + ${cat.alias}}">
+						<div class="cat-item d-flex align-items-center mb-4">
+							<div class="overflow-hidden" style="width: 100px; height: 100px;">
+								<img class="img-fluid" th:src="@{${cat.imagePath}}"/>
+							</div>
+							<div class="flex-fill pl-3">
+								<h6>[[${cat.name}]]</h6>
+								
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 ">
+					<a href="#" class="banner-img">
+						<img src="http://magento2.magentech.com/themes/sm_himarket/pub/media/wysiwyg/home-page-image/home-1/banner1.jpg" alt="">
+					</a>
+				</div>
+				<div class="col-sm-6">
+					<a href="#" class="banner-img">
+						<img src="http://magento2.magentech.com/themes/sm_himarket/pub/media/wysiwyg/home-page-image/home-1/banner2.jpg" alt="">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<div class="row">
+				<div class="col content-policy mr-2">					
+					<div class="icon"><img src="http://magento2.magentech.com/themes/sm_himarket/pub/media/wysiwyg/home-page-image/home-1/icon1.png" alt=""></div>
+					<h2>Free Shipping</h2>
+					<p>Free shipping on all UK orders</p>
+				</div>
+				<div class="col content-policy mr-2">				
+					<div class="icon"><img src="http://magento2.magentech.com/themes/sm_himarket/pub/media/wysiwyg/home-page-image/home-1/icon2.png" alt=""></div>
+					<h2>Money Guarantee</h2>
+					<p>30 days money back guarantee</p>
+				</div>
+				<div class="col content-policy mr-2">				
+					<div class="icon"><img src="http://magento2.magentech.com/themes/sm_himarket/pub/media/wysiwyg/home-page-image/home-1/icon3.png" alt=""></div>
+					<h2>Online Support</h2>
+					<p>We support online 24/24 on day</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- SECTION BRANDS-->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<div class="section-title">
+				<h3 class="title">Brands</h3>
+			</div>
+			
+			<div class="row slick-brand">
+				<div class="col-2" th:each="brand : ${listBrands}">
+					<div class="d-flex justify-content-center">
+						<img th:src="@{${brand.logoPath}}" th:alt="@{${brand.name}}" width="80" height="100" class="img-fluid"/>
+					</div>					
+				</div>	
+			</div>
+		</div>
+	</div>
+	
+	<div th:replace="navigation :: footer_menu"></div>
+	
+	<div th:replace="navigation :: jquery_plugins"></div>
+</div>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>	
+	
+
+	$(document).ready(function(){
+		$('.slick-brand').slick({
+			infinite: true,
+			autoplay: true,
+			slidesToShow: 5,
+			slidesToScroll: 2,
+			autoplaySpeed: 1500,
+			prevArrow: false,
+		    nextArrow: false
+		});				
+	});	
+	
+	function startTimer(duration, display) {
+	    var timer = duration, minutes, seconds;
+	    setInterval(function () {
+	    	days = parseInt(timer / 86400, 10);
+	    	hours = parseInt((timer % 86400) / 3600 , 10);
+	        minutes = parseInt(((timer % 86400) % 3600) / 60, 10);
+	        seconds = parseInt((((timer % 86400) % 3600) % 60) % 60, 10);
+	
+	        days = days < 10 ? "0" + days : days;
+	        hours = hours < 10 ? "0" + hours : hours;
+	        minutes = minutes < 10 ? "0" + minutes : minutes;
+	        seconds = seconds < 10 ? "0" + seconds : seconds;
+	
+	        display.innerHTML = 
+	        "<ul class=" + "hot-deal-countdown" + ">" +
+			    "<li>" + 
+					"<div> " + 
+						"<h3>" + days + "</h3>" + 
+						"<span>Days</span>" + 
+					"</div>" +
+				"</li>" +
+				"<li>" + 
+					"<div> " + 
+						"<h3>" + hours + "</h3>" + 
+						"<span>Hours</span>" + 
+					"</div>" + 
+				"</li>" +
+				
+				"<li>" + 
+					"<div> " + 
+						"<h3>" + minutes + "</h3>" + 
+						"<span>Minutes</span>" + 
+					"</div>" +
+				"</li>" + 
+				
+				"<li>" + 
+					"<div> " + 
+						"<h3>" + seconds + "</h3>" + 
+						"<span>Seconds</span>" + 
+					"</div>" +
+				"</li>" +
+			"</ul>";
+	        if (--timer < 0) {
+	            timer = duration;
+	        }
+	    }, 1000);
+	}
+	
+	window.onload = function () {
+	    var fiveMinutes = 60 * 60 * 24 * 2,
+	        display = document.querySelector('#time');
+	    startTimer(fiveMinutes, display);
+	};	
+</script>
+</body>
+</html>

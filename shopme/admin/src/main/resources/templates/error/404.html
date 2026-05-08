@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments :: page_head('Error - Shopme Admin', 'none')" />
+</head>
+<body>
+<div class="row w-100">
+	<div th:replace="navigation :: menu"></div>
+	<div class="col-sm-10">
+		<div class="m-3 text-center">
+			<h2>Sorry, the requested page could not be found</h2>		
+		</div>
+	
+		<div th:replace="fragments :: footer"></div>
+	</div>
+	
+</div>
+</body>
+</html>
