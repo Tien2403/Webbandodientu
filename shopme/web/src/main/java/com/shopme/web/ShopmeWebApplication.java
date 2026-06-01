@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @EntityScan(basePackages = "com.shopme.common.entity")
 public class ShopmeWebApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ShopmeWebApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ShopmeWebApplication.class, args);
+    }
 
 }
