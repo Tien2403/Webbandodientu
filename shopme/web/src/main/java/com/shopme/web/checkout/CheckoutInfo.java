@@ -3,6 +3,7 @@ package com.shopme.web.checkout;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class CheckoutInfo {
 	private float productCost;
@@ -68,8 +69,7 @@ public class CheckoutInfo {
 	}
 	
 	public String getPaymentTotal4PayPal() {
-		DecimalFormat formatter = new DecimalFormat("##.##");
-		return formatter.format(paymentTotal);
+		return String.format(Locale.US, "%.2f", paymentTotal);
 	}
 
 }
